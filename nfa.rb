@@ -104,8 +104,19 @@ rulebook = NFARulebook.new([
 ])
 
 nfa_design = NFADesign.new(1, [3], rulebook)
+nfa = nfa_design.to_nfa
+nfa.read_character('a')
+
+#<Set: {1, 2}>
+puts nfa.current_states
+
 simulation = NFASimulation.new(nfa_design)
 dfa_design = simulation.to_dfa_design
+dfa = dfa_design.to_dfa
+dfa.read_character('a')
+
+#<Set: {1, 2}>
+puts dfa.current_state
 
 #<struct FARule state=#<Set: {1, 2}>, character="a", next_state=#<Set: {1, 2}>>
 #<struct FARule state=#<Set: {1, 2}>, character="b", next_state=#<Set: {3, 2}>>
@@ -115,4 +126,4 @@ dfa_design = simulation.to_dfa_design
 #<struct FARule state=#<Set: {}>, character="b", next_state=#<Set: {}>>
 #<struct FARule state=#<Set: {1, 3, 2}>, character="a", next_state=#<Set: {1, 2}>>
 #<struct FARule state=#<Set: {1, 3, 2}>, character="b", next_state=#<Set: {1, 3, 2}>>
-puts dfa_design.rulebook.rules
+# puts dfa_design.rulebook.rules

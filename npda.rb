@@ -73,5 +73,12 @@ rulebook = NPDARulebook.new([
 configuration = PDAConfiguration.new(1, Stack.new(['$']))
 npda = NPDA.new(Set[configuration], [3], rulebook)
 npda.read_string('abb')
+
+#<Set: {
+  #<struct PDAConfiguration state=1, stack=#<Stack (b)ba$>>, 
+  #<struct PDAConfiguration state=2, stack=#<Stack (a)$>>, 
+  #<struct PDAConfiguration state=2, stack=#<Stack (b)ba$>>
+# }>
+puts npda.current_configurations
 npda.read_character('a')
 # puts npda.accepting?
